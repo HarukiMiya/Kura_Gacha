@@ -18,16 +18,19 @@
 
 .content_item_left_up {
     color: #C70000;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: 700;
     margin-bottom: -5px;
 }
+
 .content_item_left_bottom {
     color: #C70000;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .content_item_right {
     color: #000000;
     font-size: 3rem;
+    font-weight: 800;
 }
