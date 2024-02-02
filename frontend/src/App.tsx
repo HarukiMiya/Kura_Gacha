@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
 import Header from './components/Header';
-import YenGatcha from './components/YenGatcha';
+import YenGatcha from './components/YenGacha';
 import Footer from './components/Footer';
 
 function App() {
