@@ -7,9 +7,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import TextField from '@mui/material/TextField';
+
 
 const Setting = () => {
+
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiDialogContent-root': {
             padding: theme.spacing(2),
@@ -28,16 +32,68 @@ const Setting = () => {
         setOpen(false);
     };
 
+    const IOSSwitch = styled((props: SwitchProps) => (
+        <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+      ))(({ theme }) => ({
+        width: 42,
+        height: 26,
+        padding: 0,
+        '& .MuiSwitch-switchBase': {
+          padding: 0,
+          margin: 2,
+          transitionDuration: '300ms',
+          '&.Mui-checked': {
+            transform: 'translateX(16px)',
+            color: '#fff',
+            '& + .MuiSwitch-track': {
+              backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
+              opacity: 1,
+              border: 0,
+            },
+            '&.Mui-disabled + .MuiSwitch-track': {
+              opacity: 0.5,
+            },
+          },
+          '&.Mui-focusVisible .MuiSwitch-thumb': {
+            color: '#33cf4d',
+            border: '6px solid #fff',
+          },
+          '&.Mui-disabled .MuiSwitch-thumb': {
+            color:
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[600],
+          },
+          '&.Mui-disabled + .MuiSwitch-track': {
+            opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
+          },
+        },
+        '& .MuiSwitch-thumb': {
+          boxSizing: 'border-box',
+          width: 22,
+          height: 22,
+        },
+        '& .MuiSwitch-track': {
+          borderRadius: 26 / 2,
+          backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+          opacity: 1,
+          transition: theme.transitions.create(['background-color'], {
+            duration: 500,
+          }),
+        },
+      }));
+
   return (
     <>
         <Icon onClick={handleClickOpen} className={styles.setting_icon} fontSize='large'>
-        {/* <Icon onClick={handleClickOpen} className={classes.setting_icon} fontSize='large'> */}
             settings
         </Icon>
         <BootstrapDialog
             onClose={handleClose}
             aria-labelledby="customized-dialog-title"
             open={open}
+            fullWidth={true}
+            maxWidth='sm'
         >
             <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                 設定
@@ -55,20 +111,82 @@ const Setting = () => {
                 <CloseIcon />
             </IconButton>
             <DialogContent dividers>
-                <Typography gutterBottom>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-                </Typography>
-                <Typography gutterBottom>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                </Typography>
-                <Typography gutterBottom>
-                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-                    magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-                    ullamcorper nulla non metus auctor fringilla.
-                </Typography>
+                <div className={styles.setting_change}>
+                    <div className={styles.setting_content}>
+                        <FormControlLabel
+                            control={<IOSSwitch sx={{ m: 1 }} />}
+                            label=""
+                        />
+                        <span>値段を変更する</span>
+                    </div>
+                    <div className={styles.content}>
+                        <TextField disabled id="outlined-basic" label="1000" variant="outlined" />
+                        <div className={styles.gacha}>円ガチャ</div>
+                    </div>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        label=""
+                    />
+                    <span>値段をピッタリにする</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        label=""
+                    />
+                    <span>重複を許す</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} />}
+                        label=""
+                    />
+                    <span>カロリーを最大にする</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        label=""
+                    />
+                    <span>酒類を除く</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} />}
+                        label=""
+                    />
+                    <span>にぎりを除く</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} />}
+                        label=""
+                    />
+                    <span>にぎり一貫を除く</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} />}
+                        label="ぐんかん・細巻を除く"
+                    />
+                    <span>ぐんかん・細巻を除く</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} />}
+                        label=""
+                    />
+                    <span>サイドメニューを除く</span>
+                </div>
+                <div className={styles.setting_content}>
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 1 }} />}
+                        label=""
+                    />
+                    <span>デザートを除く</span>
+                </div>
             </DialogContent>
         </BootstrapDialog>
     </>
