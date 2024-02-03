@@ -1,0 +1,49 @@
+{
+  "hash": "8a8fcb06",
+  "configHash": "dd8cbf6b",
+  "lockfileHash": "e8b3561a",
+  "browserHash": "261b9db8",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "5524104d",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "e82f54c3",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "79d898df",
+      "needsInterop": true
+    },
+    "@mui/material/Button": {
+      "src": "../../node_modules/@mui/material/Button/index.js",
+      "file": "@mui_material_Button.js",
+      "fileHash": "dd505746",
+      "needsInterop": false
+    },
+    "@mui/material/Icon": {
+      "src": "../../node_modules/@mui/material/Icon/index.js",
+      "file": "@mui_material_Icon.js",
+      "fileHash": "3e6e18af",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-UWZXFKA6": {
+      "file": "chunk-UWZXFKA6.js"
+    },
+    "chunk-Y7DHGCHQ": {
+      "file": "chunk-Y7DHGCHQ.js"
+    },
+    "chunk-UPDK7Z2H": {
+      "file": "chunk-UPDK7Z2H.js"
+    }
+  }
+}

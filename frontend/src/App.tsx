@@ -1,10 +1,16 @@
-import Button from '@mui/material/Button';
-import Icon from '@mui/material/Icon';
+import Header from './components/Header';
+import YenGatcha from './components/YenGacha';
+import Footer from './components/Footer';
+import Setting from './components/Setting';
+import MainButton from './components/MainButton';
 
 function App() {
   return (<>
-    <Icon>settings</Icon>
-    <Button variant="contained">Hello world</Button>
+    <Header />
+    <Setting />
+    <YenGatcha />
+    <MainButton />
+    <Footer />
   </>);
 }
 
