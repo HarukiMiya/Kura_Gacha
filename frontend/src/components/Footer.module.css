@@ -3,14 +3,14 @@
     bottom: 0;
     width: 100vw;
     height: 20vh;
-    background: repeating-linear-gradient(135deg, #000000, #000000 5px, #ffffff00 5px, #ffffff00 20px);
+    background: repeating-linear-gradient(135deg, #ffffff, #ffffff 12px, #000000 12px, #000000 70px);
 }
 .cross_rectangle2 {
     position: absolute;
     bottom: 0;
     width: 100vw;
     height: 20vh;
-    background: repeating-linear-gradient(45deg, #000000, #000000 5px, #ffffff00 5px, #ffffff00 20px);
+    background: repeating-linear-gradient(45deg, #ffffff, #ffffff 12px, #00000000 12px, #00000000 70px);
 }
 
 @media (max-aspect-ratio: 1/1) {
