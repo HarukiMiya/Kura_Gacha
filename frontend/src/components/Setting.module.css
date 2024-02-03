@@ -13,3 +13,43 @@
     transition: 0.5s;
     transform: rotate(90deg);
 }
+
+
+.setting_content {
+    padding: 0 20px 20px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.setting_change {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 3rem; */
+    padding: 0 20px 20px 20px;
+}
+
+.yen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px #dadada;
+    min-width: 10px;
+    max-width: 500px;
+    overflow: auto;
+    color: #6e6e6e;
+    font-size: 3rem!important;
+    margin-right: 10px;
+    padding: 5px 10px;
+}
+
+.gacha {
+    margin-left: 20px;
+    font-size: 1.5rem;
+}
