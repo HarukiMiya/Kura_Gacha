@@ -5,5 +5,11 @@
     margin-top: 2rem;
     margin-right: 2rem;
     cursor: pointer;
+    color: #000000;
 }
 
+.setting_icon:hover {
+    color: #757575;
+    transition: 0.5s;
+    transform: rotate(90deg);
+}
