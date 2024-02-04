@@ -19,12 +19,10 @@ const ExactPrice = () => {
     useEffect(() => {
         const dataIsExactPrice = localStorage.getItem('isExactPrice');
         if (dataIsExactPrice != null) setExactPrice(JSON.parse(dataIsExactPrice));
-        console.log(isExactPrice)
     }, []);
 
     useEffect(() => {
         localStorage.setItem('isExactPrice', JSON.stringify(isExactPrice));
-        console.log(isExactPrice)
     }, [isExactPrice]);
 
     return (
