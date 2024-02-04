@@ -1,6 +1,6 @@
 import Header from './components/Header/Header';
 import YenGatcha from './components/YenGacha';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import Setting from './components/Setting';
 import MainButton from './components/MainButton';
 
