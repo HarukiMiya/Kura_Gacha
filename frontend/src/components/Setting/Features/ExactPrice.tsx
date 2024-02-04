@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import styles from './Setting/Setting.module.css';
+import styles from '../Setting.module.css';
 // import Switch, { SwitchProps } from '@mui/material/Switch';
 // import { styled } from '@mui/material/styles';
-import IOSSwitch from './IOSSwitch';
+import IOSSwitch from '../../IOSSwitch';
 
 const ExactPrice = () => {
 

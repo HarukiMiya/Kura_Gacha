@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
-import ExactPrice from '../ExactPrice';
+import ExactPrice from './Features/ExactPrice';
 
 
 const Setting = () => {
