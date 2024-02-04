@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import styles from './Setting.module.css';
+import styles from '../Setting.module.css';
 // import Switch, { SwitchProps } from '@mui/material/Switch';
 // import { styled } from '@mui/material/styles';
-import IOSSwitch from './IOSSwitch';
+import IOSSwitch from '../../IOSSwitch';
 
 const ExactPrice = () => {
 
@@ -19,12 +19,10 @@ const ExactPrice = () => {
     useEffect(() => {
         const dataIsExactPrice = localStorage.getItem('isExactPrice');
         if (dataIsExactPrice != null) setExactPrice(JSON.parse(dataIsExactPrice));
-        console.log(isExactPrice)
     }, []);
 
     useEffect(() => {
         localStorage.setItem('isExactPrice', JSON.stringify(isExactPrice));
-        console.log(isExactPrice)
     }, [isExactPrice]);
 
     return (
