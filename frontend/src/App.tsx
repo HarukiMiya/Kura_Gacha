@@ -4,17 +4,14 @@ import Footer from './components/Footer/Footer';
 import Setting from './components/Setting/Setting';
 import MainButton from './components/MainButton/MainButton';
 import { SettingContext } from './store/setting-context';
-import { useState } from 'react';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
-  const [isExactPrice, setIsExactPrice] = useState(() => {
-    const localData = localStorage.getItem('isExactPrice');
-    return localData ? JSON.parse(localData) : true;
-  });
+  const [isExactPrice, setIsExactPrice] = useLocalStorage('isExactPrice', true);
 
   const ctxVal = {
-    isExactPrice: isExactPrice,
-    setIsExactPrice: setIsExactPrice
+    isExactPrice,
+    setIsExactPrice
   }
   
   return (<SettingContext.Provider value={ctxVal}>
