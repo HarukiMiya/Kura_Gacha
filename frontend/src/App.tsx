@@ -1,4 +1,4 @@
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import YenGatcha from './components/YenGacha';
 import Footer from './components/Footer';
 import Setting from './components/Setting';
