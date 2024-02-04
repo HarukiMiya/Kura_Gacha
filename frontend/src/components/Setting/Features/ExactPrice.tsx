@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../IOSSwitch';
