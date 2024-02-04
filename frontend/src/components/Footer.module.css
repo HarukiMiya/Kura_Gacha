@@ -2,22 +2,14 @@
     position: absolute;
     bottom: 0;
     width: 100vw;
-    height: 20vh;
+    height: 200px;
     background: repeating-linear-gradient(135deg, #ffffff, #ffffff 12px, #000000 12px, #000000 70px);
 }
+
 .cross_rectangle2 {
     position: absolute;
     bottom: 0;
     width: 100vw;
-    height: 20vh;
+    height: 200px;
     background: repeating-linear-gradient(45deg, #ffffff, #ffffff 12px, #00000000 12px, #00000000 70px);
 }
-
-@media (max-aspect-ratio: 1/1) {
-    .cross_rectangle1 {
-        height: 10vh;
-    }
-    .cross_rectangle2 {
-        height: 10vh;
-    }
-  }

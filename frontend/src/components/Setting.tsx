@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Icon from '@mui/material/Icon';
 import { styled } from '@mui/material/styles';
 import styles from './Setting.module.css';
@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
+import ExactPrice from './ExactPrice';
 
 
 const Setting = () => {
@@ -23,7 +24,7 @@ const Setting = () => {
         },
       }));
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -124,13 +125,7 @@ const Setting = () => {
                         <div className={styles.gacha}>円ガチャ</div>
                     </div>
                 </div>
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-                        label=""
-                    />
-                    <span>値段をピッタリにする</span>
-                </div>
+                <ExactPrice />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
