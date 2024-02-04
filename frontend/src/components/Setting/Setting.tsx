@@ -13,8 +13,7 @@ import TextField from '@mui/material/TextField';
 import ExactPrice from './Features/ExactPrice';
 
 
-const Setting = () => {
-
+const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiDialogContent-root': {
             padding: theme.spacing(2),
@@ -186,6 +185,6 @@ const Setting = () => {
         </BootstrapDialog>
     </>
   )
-}
+})
 
 export default Setting;

@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
-// import Switch, { SwitchProps } from '@mui/material/Switch';
-// import { styled } from '@mui/material/styles';
 import IOSSwitch from '../../IOSSwitch';
 
-const ExactPrice = () => {
+import { useContext } from 'react';
+import { SettingContext } from '../../../store/setting-context';
 
-    const handleExactPrice = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setExactPrice(e.target.checked);
-    };
-    const [isExactPrice, setExactPrice] = useState(() => {
-        const localData = localStorage.getItem('isExactPrice');
-        console.log(localData);
-        return localData ? JSON.parse(localData) : true;
-    });
+const ExactPrice = () => {
+    // Retreiving useState() by using Context API
+    const { isExactPrice, setIsExactPrice} = useContext(SettingContext);
 
     useEffect(() => {
         const dataIsExactPrice = localStorage.getItem('isExactPrice');
-        if (dataIsExactPrice != null) setExactPrice(JSON.parse(dataIsExactPrice));
+        if (dataIsExactPrice != null) setIsExactPrice(JSON.parse(dataIsExactPrice));
     }, []);
 
     useEffect(() => {
         localStorage.setItem('isExactPrice', JSON.stringify(isExactPrice));
     }, [isExactPrice]);
+
+    const handleExactPrice = () => {
+        setIsExactPrice(prev => !prev);
+    };
 
     return (
         <div className={styles.setting_content}>
