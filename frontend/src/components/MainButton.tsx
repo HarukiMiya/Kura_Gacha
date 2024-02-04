@@ -28,9 +28,9 @@ const MainButton = () => {
     };
     return (
         <>
-            <div  onClick={handleClickOpen}  className={styles.btn_container}>
+            <div className={styles.btn_container}>
                 <div className={styles.btn_out} />
-                <button className={styles.btn_in}/>
+                <button onClick={handleClickOpen} className={styles.btn_in}/>
             </div>
             <BootstrapDialog
                     onClose={handleClose}
