@@ -16,6 +16,7 @@ import MaxCal from './Features/MaxCal';
 import RemoveAlco from './Features/RemoveAlco';
 import RemoveNigiri from './Features/RemoveNigiri';
 import RemoveNigiriIkkan from './Features/RemoveNigiriIkkan';
+import RemoveGunkan from './Features/RemoveGunkan';
 
 const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -134,20 +135,7 @@ const Setting = React.memo(() => {
                 <RemoveAlco />
                 <RemoveNigiri />
                 <RemoveNigiriIkkan />
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} />}
-                        label=""
-                    />
-                    <span>にぎり一貫を除く</span>
-                </div>
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} />}
-                        label="ぐんかん・細巻を除く"
-                    />
-                    <span>ぐんかん・細巻を除く</span>
-                </div>
+                <RemoveGunkan />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} />}

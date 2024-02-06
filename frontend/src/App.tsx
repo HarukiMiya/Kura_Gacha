@@ -13,6 +13,7 @@ function App() {
   const [isRemovedAlco, setIsRemovedAlco] = useLocalStorage('isRemovedAlco', true);
   const [isRemovedNigiri, setIsRemovedNigiri] = useLocalStorage('isRemovedNigiri', false);
   const [isRemovedNigiriIkkan, setIsRemovedNigiriIkkan] = useLocalStorage('isRemovedNigiriIkkan', false);
+  const [isRemovedGunkan, setIsRemovedGunkan] = useLocalStorage('isRemovedGunkan', false);
 
   const ctxVal = {
     isExactPrice,
@@ -26,7 +27,9 @@ function App() {
     isRemovedNigiri,
     setIsRemovedNigiri,
     isRemovedNigiriIkkan,
-    setIsRemovedNigiriIkkan
+    setIsRemovedNigiriIkkan,
+    isRemovedGunkan,
+    setIsRemovedGunkan
   }
   
   return (<SettingContext.Provider value={ctxVal}>
