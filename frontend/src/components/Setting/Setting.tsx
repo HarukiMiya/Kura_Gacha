@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField';
 import ExactPrice from './Features/ExactPrice';
 import Duplicatable from './Features/Duplicatable';
 import MaxCal from './Features/MaxCal';
+import RemoveAlco from './Features/RemoveAlco';
 
 const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -128,13 +129,7 @@ const Setting = React.memo(() => {
                 <ExactPrice />
                 <Duplicatable />
                 <MaxCal />
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-                        label=""
-                    />
-                    <span>酒類を除く</span>
-                </div>
+                <RemoveAlco />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} />}
