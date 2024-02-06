@@ -12,6 +12,7 @@ const Duplicatable = () => {
     useEffect(() => {
         const dataIsDuplicatable = localStorage.getItem('isDuplicatable');
         if (dataIsDuplicatable != null) setIsDuplicatable(JSON.parse(dataIsDuplicatable));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

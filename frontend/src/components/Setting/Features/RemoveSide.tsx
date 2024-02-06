@@ -12,6 +12,7 @@ const RemoveSide = () => {
     useEffect(() => {
         const dataIsRemovedSide = localStorage.getItem('isRemovedSide');
         if (dataIsRemovedSide != null) setIsRemovedSide(JSON.parse(dataIsRemovedSide));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
