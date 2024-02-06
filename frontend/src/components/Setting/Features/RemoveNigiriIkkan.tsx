@@ -33,4 +33,4 @@ const RemoveNigiriIkkan = () => {
     )
 }
 
-export default RemoveNigiriIkkan
+export default RemoveNigiriIkkan;

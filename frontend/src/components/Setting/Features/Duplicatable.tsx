@@ -33,4 +33,4 @@ const Duplicatable = () => {
     )
 }
 
-export default Duplicatable
+export default Duplicatable;

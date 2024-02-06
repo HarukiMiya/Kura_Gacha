@@ -17,6 +17,7 @@ import RemoveAlco from './Features/RemoveAlco';
 import RemoveNigiri from './Features/RemoveNigiri';
 import RemoveNigiriIkkan from './Features/RemoveNigiriIkkan';
 import RemoveGunkan from './Features/RemoveGunkan';
+import RemoveSide from './Features/RemoveSide';
 
 const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -136,13 +137,7 @@ const Setting = React.memo(() => {
                 <RemoveNigiri />
                 <RemoveNigiriIkkan />
                 <RemoveGunkan />
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} />}
-                        label=""
-                    />
-                    <span>サイドメニューを除く</span>
-                </div>
+                <RemoveSide />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} />}

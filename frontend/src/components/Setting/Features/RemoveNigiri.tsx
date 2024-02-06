@@ -33,4 +33,4 @@ const RemoveNigiri = () => {
     )
 }
 
-export default RemoveNigiri
+export default RemoveNigiri;

@@ -33,4 +33,4 @@ const RemoveGunkan = () => {
     )
 }
 
-export default RemoveGunkan
+export default RemoveGunkan;

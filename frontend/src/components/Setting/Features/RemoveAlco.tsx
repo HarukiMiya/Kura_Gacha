@@ -33,4 +33,4 @@ const RemoveAlco = () => {
     )
 }
 
-export default RemoveAlco
+export default RemoveAlco;
