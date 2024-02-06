@@ -10,8 +10,8 @@ const RemoveAlco = () => {
     const { isRemovedAlco, setIsRemovedAlco} = useContext(SettingContext);
 
     useEffect(() => {
-        const dataisMaxCal = localStorage.getItem('isRemovedAlco');
-        if (dataisMaxCal != null) setIsRemovedAlco(JSON.parse(dataisMaxCal));
+        const dataIsRemovedAlco = localStorage.getItem('isRemovedAlco');
+        if (dataIsRemovedAlco != null) setIsRemovedAlco(JSON.parse(dataIsRemovedAlco));
     }, []);
 
     useEffect(() => {

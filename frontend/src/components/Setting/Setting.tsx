@@ -14,6 +14,7 @@ import ExactPrice from './Features/ExactPrice';
 import Duplicatable from './Features/Duplicatable';
 import MaxCal from './Features/MaxCal';
 import RemoveAlco from './Features/RemoveAlco';
+import RemoveNigiri from './Features/RemoveNigiri';
 
 const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -130,13 +131,7 @@ const Setting = React.memo(() => {
                 <Duplicatable />
                 <MaxCal />
                 <RemoveAlco />
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} />}
-                        label=""
-                    />
-                    <span>にぎりを除く</span>
-                </div>
+                <RemoveNigiri />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} />}

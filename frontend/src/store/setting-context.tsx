@@ -10,6 +10,8 @@ interface SettingContextProps {
     setIsMaxCal: Dispatch<SetStateAction<boolean>>;
     isRemovedAlco: boolean;
     setIsRemovedAlco: Dispatch<SetStateAction<boolean>>;
+    isRemovedNigiri: boolean;
+    setIsRemovedNigiri: Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -20,6 +22,8 @@ export const SettingContext = createContext<SettingContextProps>({
     isMaxCal: false,
     setIsMaxCal: () => {},
     isRemovedAlco: true,
-    setIsRemovedAlco: () => {}
+    setIsRemovedAlco: () => {},
+    isRemovedNigiri: false,
+    setIsRemovedNigiri: () => {}
 });
 
