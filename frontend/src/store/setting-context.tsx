@@ -8,6 +8,8 @@ interface SettingContextProps {
     setIsDuplicatable: Dispatch<SetStateAction<boolean>>;
     isMaxCal: boolean;
     setIsMaxCal: Dispatch<SetStateAction<boolean>>;
+    isRemovedAlco: boolean;
+    setIsRemovedAlco: Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -17,5 +19,7 @@ export const SettingContext = createContext<SettingContextProps>({
     setIsDuplicatable: () => {},
     isMaxCal: false,
     setIsMaxCal: () => {},
+    isRemovedAlco: true,
+    setIsRemovedAlco: () => {}
 });
 

@@ -10,6 +10,7 @@ function App() {
   const [isExactPrice, setIsExactPrice] = useLocalStorage('isExactPrice', true);
   const [isDuplicatable, setIsDuplicatable] = useLocalStorage('isDuplicatable', true);
   const [isMaxCal, setIsMaxCal] = useLocalStorage('isMaxCal', false);
+  const [isRemovedAlco, setIsRemovedAlco] = useLocalStorage('isRemovedAlco', true);
 
   const ctxVal = {
     isExactPrice,
@@ -18,6 +19,8 @@ function App() {
     setIsDuplicatable,
     isMaxCal,
     setIsMaxCal,
+    isRemovedAlco,
+    setIsRemovedAlco
   }
   
   return (<SettingContext.Provider value={ctxVal}>
