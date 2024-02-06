@@ -15,7 +15,6 @@ import Duplicatable from './Features/Duplicatable';
 import MaxCal from './Features/MaxCal';
 import RemoveAlco from './Features/RemoveAlco';
 import RemoveNigiri from './Features/RemoveNigiri';
-import RemoveNigiriIkkan from './Features/RemoveNigiriIkkan';
 
 const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -133,7 +132,6 @@ const Setting = React.memo(() => {
                 <MaxCal />
                 <RemoveAlco />
                 <RemoveNigiri />
-                <RemoveNigiriIkkan />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} />}
