@@ -6,6 +6,8 @@ interface SettingContextProps {
     setIsExactPrice: Dispatch<SetStateAction<boolean>>;
     isDuplicatable: boolean;
     setIsDuplicatable: Dispatch<SetStateAction<boolean>>;
+    isMaxCal: boolean;
+    setIsMaxCal: Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -13,5 +15,7 @@ export const SettingContext = createContext<SettingContextProps>({
     setIsExactPrice: () => {},
     isDuplicatable: true,
     setIsDuplicatable: () => {},
+    isMaxCal: false,
+    setIsMaxCal: () => {},
 });
 

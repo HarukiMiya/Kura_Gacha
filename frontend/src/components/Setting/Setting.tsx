@@ -12,7 +12,7 @@ import Switch, { SwitchProps } from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import ExactPrice from './Features/ExactPrice';
 import Duplicatable from './Features/Duplicatable';
-
+import MaxCal from './Features/MaxCal';
 
 const Setting = React.memo(() => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -127,13 +127,7 @@ const Setting = React.memo(() => {
                 </div>
                 <ExactPrice />
                 <Duplicatable />
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} />}
-                        label=""
-                    />
-                    <span>カロリーを最大にする</span>
-                </div>
+                <MaxCal />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}

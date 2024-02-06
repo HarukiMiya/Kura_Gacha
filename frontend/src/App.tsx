@@ -9,12 +9,15 @@ import useLocalStorage from './hooks/useLocalStorage';
 function App() {
   const [isExactPrice, setIsExactPrice] = useLocalStorage('isExactPrice', true);
   const [isDuplicatable, setIsDuplicatable] = useLocalStorage('isDuplicatable', true);
+  const [isMaxCal, setIsMaxCal] = useLocalStorage('isMaxCal', false);
 
   const ctxVal = {
     isExactPrice,
     setIsExactPrice,
     isDuplicatable,
-    setIsDuplicatable
+    setIsDuplicatable,
+    isMaxCal,
+    setIsMaxCal,
   }
   
   return (<SettingContext.Provider value={ctxVal}>
