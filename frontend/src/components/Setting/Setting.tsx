@@ -11,6 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import ExactPrice from './Features/ExactPrice';
+import Duplicatable from './Features/Duplicatable';
 
 
 const Setting = React.memo(() => {
@@ -125,13 +126,7 @@ const Setting = React.memo(() => {
                     </div>
                 </div>
                 <ExactPrice />
-                <div className={styles.setting_content}>
-                    <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-                        label=""
-                    />
-                    <span>重複を許す</span>
-                </div>
+                <Duplicatable />
                 <div className={styles.setting_content}>
                     <FormControlLabel
                         control={<IOSSwitch sx={{ m: 1 }} />}
