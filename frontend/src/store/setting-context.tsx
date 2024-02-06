@@ -18,6 +18,8 @@ interface SettingContextProps {
     setIsRemovedGunkan: Dispatch<SetStateAction<boolean>>;
     isRemovedSide: boolean;
     setIsRemovedSide: Dispatch<SetStateAction<boolean>>;
+    isRemovedDessert: boolean;
+    setIsRemovedDessert: Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -37,5 +39,7 @@ export const SettingContext = createContext<SettingContextProps>({
     setIsRemovedGunkan: () => {},
     isRemovedSide: false,
     setIsRemovedSide: () => {},
+    isRemovedDessert: false,
+    setIsRemovedDessert: () => {},
 });
 
