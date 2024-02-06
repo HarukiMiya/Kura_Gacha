@@ -14,6 +14,8 @@ interface SettingContextProps {
     setIsRemovedNigiri: Dispatch<SetStateAction<boolean>>;
     isRemovedNigiriIkkan: boolean;
     setIsRemovedNigiriIkkan: Dispatch<SetStateAction<boolean>>;
+    isRemovedGunkan: boolean;
+    setIsRemovedGunkan: Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -29,5 +31,7 @@ export const SettingContext = createContext<SettingContextProps>({
     setIsRemovedNigiri: () => {},
     isRemovedNigiriIkkan: false,
     setIsRemovedNigiriIkkan: () => {},
+    isRemovedGunkan: false,
+    setIsRemovedGunkan: () => {},
 });
 
