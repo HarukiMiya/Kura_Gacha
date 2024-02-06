@@ -12,6 +12,8 @@ interface SettingContextProps {
     setIsRemovedAlco: Dispatch<SetStateAction<boolean>>;
     isRemovedNigiri: boolean;
     setIsRemovedNigiri: Dispatch<SetStateAction<boolean>>;
+    isRemovedNigiriIkkan: boolean;
+    setIsRemovedNigiriIkkan: Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -24,6 +26,8 @@ export const SettingContext = createContext<SettingContextProps>({
     isRemovedAlco: true,
     setIsRemovedAlco: () => {},
     isRemovedNigiri: false,
-    setIsRemovedNigiri: () => {}
+    setIsRemovedNigiri: () => {},
+    isRemovedNigiriIkkan: false,
+    setIsRemovedNigiriIkkan: () => {},
 });
 
