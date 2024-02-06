@@ -33,4 +33,4 @@ const MaxCal = () => {
     )
 }
 
-export default MaxCal
+export default MaxCal;
