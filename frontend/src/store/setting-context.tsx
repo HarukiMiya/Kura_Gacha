@@ -20,6 +20,8 @@ interface SettingContextProps {
     setIsRemovedSide: Dispatch<SetStateAction<boolean>>;
     isRemovedDessert: boolean;
     setIsRemovedDessert: Dispatch<SetStateAction<boolean>>;
+    desiredPrice: number;
+    setDesiredPrice: Dispatch<SetStateAction<number>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -41,5 +43,7 @@ export const SettingContext = createContext<SettingContextProps>({
     setIsRemovedSide: () => {},
     isRemovedDessert: false,
     setIsRemovedDessert: () => {},
+    desiredPrice: 1000,
+    setDesiredPrice: () => {},
 });
 

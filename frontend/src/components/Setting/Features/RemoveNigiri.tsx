@@ -12,6 +12,7 @@ const RemoveNigiri = () => {
     useEffect(() => {
         const dataIsRemovedNigiri = localStorage.getItem('isRemovedNigiri');
         if (dataIsRemovedNigiri != null) setIsRemovedNigiri(JSON.parse(dataIsRemovedNigiri));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

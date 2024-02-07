@@ -12,6 +12,7 @@ const RemoveGunkan = () => {
     useEffect(() => {
         const dataIsRemovedGunkan = localStorage.getItem('isRemovedGunkan');
         if (dataIsRemovedGunkan != null) setIsRemovedGunkan(JSON.parse(dataIsRemovedGunkan));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
