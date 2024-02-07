@@ -13,6 +13,7 @@ const ExactPrice = () => {
     useEffect(() => {
         const dataIsExactPrice = localStorage.getItem('isExactPrice');
         if (dataIsExactPrice != null) setIsExactPrice(JSON.parse(dataIsExactPrice));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

@@ -12,6 +12,7 @@ const RemoveAlco = () => {
     useEffect(() => {
         const dataIsRemovedAlco = localStorage.getItem('isRemovedAlco');
         if (dataIsRemovedAlco != null) setIsRemovedAlco(JSON.parse(dataIsRemovedAlco));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
