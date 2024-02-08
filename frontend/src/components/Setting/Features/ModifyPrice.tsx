@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import styles from '../Setting.module.css';
-import IOSSwitch from '../../IOSSwitch';
+import IOSSwitch from '../../UI/IOSSwitch';
 import Button from '@mui/material/Button';
 
 import { useContext } from 'react';

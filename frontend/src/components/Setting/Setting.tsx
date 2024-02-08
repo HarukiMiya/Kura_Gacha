@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Icon from '@mui/material/Icon';
-import { styled } from '@mui/material/styles';
 import styles from './Setting.module.css';
-import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import BootstrapDialog from '../UI/BootstrapDialog';
 import ExactPrice from './Features/ExactPrice';
 import Duplicatable from './Features/Duplicatable';
 import MaxCal from './Features/MaxCal';
@@ -19,15 +18,6 @@ import RemoveDessert from './Features/RemoveDessert';
 import ModifyPrice from './Features/ModifyPrice';
 
 const Setting = React.memo(() => {
-    const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-        '& .MuiDialogContent-root': {
-            padding: theme.spacing(2),
-        },
-        '& .MuiDialogActions-root': {
-            padding: theme.spacing(1),
-        },
-      }));
-
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {

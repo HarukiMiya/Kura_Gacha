@@ -1,24 +1,14 @@
 import styles from './MainButton.module.css';
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import BootstrapDialog from '../UI/BootstrapDialog';
 import { getRandomItems } from '../../utils/getRandomItems';
 
 const MainButton = () => {
-    const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-        '& .MuiDialogContent-root': {
-            padding: theme.spacing(2),
-        },
-        '& .MuiDialogActions-root': {
-            padding: theme.spacing(1),
-        },
-      }));
-
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
