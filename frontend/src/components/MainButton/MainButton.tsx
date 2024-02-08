@@ -1,5 +1,5 @@
 import styles from './MainButton.module.css';
-import * as React from 'react';
+import { useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
@@ -9,7 +9,7 @@ import BootstrapDialog from '../UI/BootstrapDialog';
 import { getRandomItems } from '../../utils/getRandomItems';
 
 const MainButton = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -65,4 +65,4 @@ const MainButton = () => {
     )
 }
 
-export default MainButton
+export default MainButton;
