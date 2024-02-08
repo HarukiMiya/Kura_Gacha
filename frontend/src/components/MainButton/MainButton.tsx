@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import { getRandomItems } from '../../utils/getRandomItems';
 
 const MainButton = () => {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -22,6 +23,7 @@ const MainButton = () => {
 
     const handleClickOpen = () => {
         setOpen(true);
+        getRandomItems();
     };
     const handleClose = () => {
         setOpen(false);
