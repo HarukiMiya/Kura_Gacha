@@ -1,22 +1,8 @@
 import { getRandomItems } from "./getRandomItems";
 import { Sushi } from "../interfaces/Sushi";
+import { Ctx } from "../interfaces/CTX";
 
-interface ctx {
-    isExactPrice: boolean,
-    isDuplicatable: boolean,
-    isMaxCal: boolean,
-    isRemovedAlco: boolean,
-    isRemovedNigiri: boolean,
-    isRemovedNigiriIkkan: boolean,
-    isRemovedGunkan: boolean,
-    isRemovedSide: boolean,
-    isRemovedDessert: boolean,
-    desiredPrice: number,
-    waiting: boolean,
-    setWaiting: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export const getValidItems = (ctx:ctx, setItems: React.Dispatch<React.SetStateAction<Sushi[]>>) => {
+export const getValidItems = (ctx:Ctx, setItems: React.Dispatch<React.SetStateAction<Sushi[]>>) => {
     for (let attempt = 0; attempt < 10000; attempt++) {
         const currItems = getRandomItems(
             ctx.isExactPrice,
