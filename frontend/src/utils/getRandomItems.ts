@@ -18,7 +18,7 @@ export const getRandomItems = (
     const halfLen = data.length / 3
     let currentPrice = 0;
     let c = 1;
-    
+
     while (currentPrice < desiredPrice) {
         const randomIndex = Math.floor(Math.random() * data.length);
         const sushi: Sushi = data[randomIndex];
@@ -33,9 +33,17 @@ export const getRandomItems = (
         sushiCombination.push(sushi);
         currentPrice += sushiPrice;
     }
-    if (currentPrice === desiredPrice) {
-        return sushiCombination;
+    if (isExactPrice) {
+        if (currentPrice === desiredPrice) {
+            return sushiCombination;
+        } else {
+            return null;
+        }
     } else {
-        return null;
+        if (desiredPrice - 50 <= currentPrice && currentPrice <= desiredPrice + 50) {
+            return sushiCombination;
+        } else {
+            return null;
+        }
     }
 };

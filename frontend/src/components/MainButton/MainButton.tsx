@@ -64,7 +64,7 @@ const MainButton = () => {
                     }
                     {items.map((item)=> {
                         return <Typography gutterBottom>
-                            {item.item_name}
+                            {item.item_name} {item.item_price}
                         </Typography>
                     })}
                 </DialogContent>
