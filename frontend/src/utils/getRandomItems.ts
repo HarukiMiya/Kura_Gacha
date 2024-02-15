@@ -1,12 +1,5 @@
 import data from '../../../data/data.json';
-
-interface Sushi {
-    item_name: string,
-    item_price: number,
-    item_kcal: number,
-    item_category: string,
-    is_alcohol: boolean,
-}
+import { Sushi } from '../interfaces/Sushi';
 
 export const getRandomItems = (
     isExactPrice: boolean, 

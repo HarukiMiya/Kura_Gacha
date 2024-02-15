@@ -6,48 +6,24 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import BootstrapDialog from '../UI/BootstrapDialog';
-import { getRandomItems } from '../../utils/getRandomItems';
 import { useContext } from 'react';
 import { SettingContext } from '../../store/setting-context';
+import { getValidItems } from '../../utils/getValidItems';
+import { Sushi } from '../../interfaces/Sushi';
 
 const MainButton = () => {
     const ctx = useContext(SettingContext);
 
     const [open, setOpen] = useState(false);
 
-    const [items, setItems] = useState<string[]>([]);
-
-    const getValidItems = () => {
-        for (let attempt = 0; attempt < 10000; attempt++) {
-            const currItems = getRandomItems(
-                ctx.isExactPrice,
-                ctx.isDuplicatable,
-                ctx.isMaxCal,
-                ctx.isRemovedAlco,
-                ctx.isRemovedNigiri,
-                ctx.isRemovedNigiriIkkan,
-                ctx.isRemovedGunkan,
-                ctx.isRemovedSide,
-                ctx.isRemovedDessert,
-                ctx.desiredPrice
-            );
-
-            if (currItems) {
-                setItems(currItems.map((val) => val.item_name));
-                ctx.setWaiting(false);
-                return 'valid';
-            }
-        }
-        ctx.setWaiting(false);
-        return 'invalid';
-    };
+    const [items, setItems] = useState<Sushi[]>([]);
 
     const handleClickOpen = () => {
         setItems([]);
         setOpen(true);
         ctx.setWaiting(true);
         setTimeout(async () => {
-            getValidItems();
+            getValidItems(ctx, setItems);
             ctx.setWaiting(false);
         }, 500);
     };
@@ -84,11 +60,11 @@ const MainButton = () => {
                 </IconButton>
                 <DialogContent dividers>
                     {ctx.waiting &&
-                        <h1>計算中</h1>
+                        <p>計算中</p>
                     }
                     {items.map((item)=> {
                         return <Typography gutterBottom>
-                            {item}
+                            {item.item_name}
                         </Typography>
                     })}
                 </DialogContent>
