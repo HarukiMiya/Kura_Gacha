@@ -15,23 +15,29 @@ export const getRandomItems = (
     ): Sushi[] | null => {
     console.log("getRandomItems()");
     const sushiCombination: Sushi[] = [];
-    const halfLen = data.length / 3
+    const limit = data.length / 3
     let currentPrice = 0;
     let c = 1;
 
     while (currentPrice < desiredPrice) {
-        const randomIndex = Math.floor(Math.random() * data.length);
+        const randomIndex: number = Math.floor(Math.random() * data.length);
         const sushi: Sushi = data[randomIndex];
         const sushiPrice: number = sushi.item_price;
 
         if (!isDuplicatable && sushiCombination.some((item) => item === sushi)) {
-            console.log("executed", sushiCombination, halfLen);
+            console.log("executed", sushiCombination, limit);
             c++;
-            if (c > 50 || sushiCombination.length > halfLen) return null;
+            if (c > 50 || sushiCombination.length > limit) return null;
             continue;
         }
-        sushiCombination.push(sushi);
-        currentPrice += sushiPrice;
+        if (isRemovedAlco && sushi.is_alcohol == false) {
+            sushiCombination.push(sushi);
+            currentPrice += sushiPrice;
+            continue;
+        } else if (!isRemovedAlco) {
+            sushiCombination.push(sushi);
+            currentPrice += sushiPrice;
+        }
     }
     if (isExactPrice) {
         if (currentPrice === desiredPrice) {
