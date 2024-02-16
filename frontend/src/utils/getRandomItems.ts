@@ -30,11 +30,7 @@ export const getRandomItems = (
             if (c > 50 || sushiCombination.length > limit) return null;
             continue;
         }
-        if (isRemovedAlco && sushi.is_alcohol == false) {
-            sushiCombination.push(sushi);
-            currentPrice += sushiPrice;
-            continue;
-        } else if (!isRemovedAlco) {
+        if (!isRemovedAlco || (isRemovedAlco && sushi.is_alcohol === false)) {
             sushiCombination.push(sushi);
             currentPrice += sushiPrice;
         }
