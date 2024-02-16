@@ -19,21 +19,30 @@ export const getRandomItems = (
     let currentPrice = 0;
     let c = 1;
 
+    const filteredData = data.filter(item => {
+        if (isRemovedAlco && item.is_alcohol) return false;
+        if (isRemovedNigiri && item.item_category == "にぎり") return false;
+        if (isRemovedNigiriIkkan && item.item_category == "にぎり一貫") return false;
+        if (isRemovedGunkan && item.item_category == "ぐんかん・細巻") return false;
+        if (isRemovedSide && item.item_category == "サイドメニュー") return false;
+        if (isRemovedDessert && item.item_category == "デザート") return false;
+        return true;
+    });
+    if (!filteredData.length) return null;
+
     while (currentPrice < desiredPrice) {
-        const randomIndex: number = Math.floor(Math.random() * data.length);
-        const sushi: Sushi = data[randomIndex];
+        const randomIndex: number = Math.floor(Math.random() * filteredData.length);
+        const sushi: Sushi = filteredData[randomIndex];
         const sushiPrice: number = sushi.item_price;
 
-        if (!isDuplicatable && sushiCombination.some((item) => item === sushi)) {
+        if (!isDuplicatable && sushiCombination.some((item) => item == sushi)) {
             console.log("executed", sushiCombination, limit);
             c++;
             if (c > 50 || sushiCombination.length > limit) return null;
             continue;
         }
-        if (!isRemovedAlco || (isRemovedAlco && sushi.is_alcohol === false)) {
-            sushiCombination.push(sushi);
-            currentPrice += sushiPrice;
-        }
+        sushiCombination.push(sushi);
+        currentPrice += sushiPrice;
     }
     if (isExactPrice) {
         if (currentPrice === desiredPrice) {
