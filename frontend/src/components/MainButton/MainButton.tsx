@@ -9,14 +9,14 @@ import BootstrapDialog from '../UI/BootstrapDialog';
 import { useContext } from 'react';
 import { SettingContext } from '../../store/setting-context';
 import { getValidItems } from '../../utils/getValidItems';
-import { Sushi } from '../../interfaces/Sushi';
+import { Item } from '../../interfaces/Sushi';
 
 const MainButton = () => {
     const ctx = useContext(SettingContext);
 
     const [open, setOpen] = useState(false);
 
-    const [items, setItems] = useState<Sushi[]>([]);
+    const [items, setItems] = useState<Item[]>([]);
 
     const handleClickOpen = () => {
         setItems([]);

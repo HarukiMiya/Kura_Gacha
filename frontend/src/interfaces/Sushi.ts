@@ -1,4 +1,4 @@
-export interface Sushi {
+export interface Item {
     item_name: string,
     item_price: number,
     item_kcal: number,

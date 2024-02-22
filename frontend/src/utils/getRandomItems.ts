@@ -1,5 +1,5 @@
 import data from '../../../data/data.json';
-import { Sushi } from '../interfaces/Sushi';
+import { Item } from '../interfaces/Sushi';
 
 export const getRandomItems = (
     isExactPrice: boolean, 
@@ -12,9 +12,9 @@ export const getRandomItems = (
     isRemovedSide: boolean, 
     isRemovedDessert: boolean, 
     desiredPrice: number
-    ): Sushi[] | null => {
+    ): Item[] | null => {
     console.log("getRandomItems()");
-    const sushiCombination: Sushi[] = [];
+    const sushiCombination: Item[] = [];
     const limit = data.length / 3
     let currentPrice = 0;
     let c = 1;
@@ -32,7 +32,7 @@ export const getRandomItems = (
 
     while (currentPrice < desiredPrice) {
         const randomIndex: number = Math.floor(Math.random() * filteredData.length);
-        const sushi: Sushi = filteredData[randomIndex];
+        const sushi: Item = filteredData[randomIndex];
         const sushiPrice: number = sushi.item_price;
 
         if (!isDuplicatable && sushiCombination.some((item) => item == sushi)) {

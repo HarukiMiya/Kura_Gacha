@@ -1,8 +1,8 @@
 import { getRandomItems } from "./getRandomItems";
-import { Sushi } from "../interfaces/Sushi";
+import { Item } from "../interfaces/Sushi";
 import { Ctx } from "../interfaces/CTX";
 
-export const getValidItems = (ctx:Ctx, setItems: React.Dispatch<React.SetStateAction<Sushi[]>>) => {
+export const getValidItems = (ctx:Ctx, setItems: React.Dispatch<React.SetStateAction<Item[]>>) => {
     for (let attempt = 0; attempt < 10000; attempt++) {
         const currItems = getRandomItems(
             ctx.isExactPrice,
