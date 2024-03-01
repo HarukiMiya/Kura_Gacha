@@ -1,5 +1,5 @@
 import styles from './MainButton.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
@@ -14,19 +14,30 @@ import { Item } from '../../interfaces/Sushi';
 const MainButton = () => {
     const ctx = useContext(SettingContext);
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const [items, setItems] = useState<Item[]>([]);
+
+    const [valid, setValid] = useState<string>("");
 
     const handleClickOpen = () => {
         setItems([]);
         setOpen(true);
         ctx.setWaiting(true);
         setTimeout(async () => {
-            getValidItems(ctx, setItems);
+            setValid(getValidItems(ctx, setItems));
             ctx.setWaiting(false);
+            // console.log(items);
         }, 500);
     };
+
+    useEffect(() => {
+        console.log("items", items);
+        const totalPrice: number = items.reduce((acc, comb) => acc + comb.item_price, 0);
+        console.log("totPrice",totalPrice);
+        const totalCal: number = items.reduce((acc, comb) => acc + comb.item_kcal, 0);
+        console.log("totalCal", totalCal);
+    }, [items]);
 
     const handleClose = () => {
         setOpen(false);
@@ -62,11 +73,18 @@ const MainButton = () => {
                     {ctx.waiting &&
                         <p>計算中</p>
                     }
-                    {items.map((item)=> {
-                        return <Typography gutterBottom>
-                            {item.item_name} {item.item_price} {item.item_category}
-                        </Typography>
-                    })}
+                    {!ctx.waiting && (valid == 'impossible' || valid == 'invalid') &&
+                        <p>{valid}</p>
+                    }
+                    {!ctx.waiting && ( valid == 'valid') && 
+                        <>
+                            {items.map((item)=> {
+                                return <Typography gutterBottom>
+                                    {item.item_name} {item.item_price} {item.item_category}
+                                </Typography>
+                            })}
+                        </>
+                    }
                 </DialogContent>
             </BootstrapDialog>
         </>
