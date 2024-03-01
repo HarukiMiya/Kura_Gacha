@@ -1,6 +1,6 @@
 import { getRandomItems } from "./getRandomItems";
 import { Item } from "../interfaces/Sushi";
-import { Ctx } from "../interfaces/CTX";
+import { Ctx } from "../interfaces/Ctx";
 
 export const getValidItems = (ctx:Ctx, setItems: React.Dispatch<React.SetStateAction<Item[]>>) => {
     let impossible: boolean = false;
