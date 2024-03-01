@@ -1,31 +1,48 @@
 import styles from './MainButton.module.css';
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
+import { useEffect, useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import BootstrapDialog from '../UI/BootstrapDialog';
+import { useContext } from 'react';
+import { SettingContext } from '../../store/setting-context';
+import { getValidItems } from '../../utils/getValidItems';
+import { Item } from '../../interfaces/Sushi';
 
 const MainButton = () => {
-    const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-        '& .MuiDialogContent-root': {
-            padding: theme.spacing(2),
-        },
-        '& .MuiDialogActions-root': {
-            padding: theme.spacing(1),
-        },
-      }));
+    const ctx = useContext(SettingContext);
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState<boolean>(false);
+
+    const [items, setItems] = useState<Item[]>([]);
+
+    const [valid, setValid] = useState<string>("");
 
     const handleClickOpen = () => {
+        setItems([]);
         setOpen(true);
+        ctx.setWaiting(true);
+        setTimeout(async () => {
+            setValid(getValidItems(ctx, setItems));
+            ctx.setWaiting(false);
+            // console.log(items);
+        }, 500);
     };
+
+    useEffect(() => {
+        console.log("items", items);
+        const totalPrice: number = items.reduce((acc, comb) => acc + comb.item_price, 0);
+        console.log("totPrice",totalPrice);
+        const totalCal: number = items.reduce((acc, comb) => acc + comb.item_kcal, 0);
+        console.log("totalCal", totalCal);
+    }, [items]);
+
     const handleClose = () => {
         setOpen(false);
     };
+
     return (
         <>
             <div className={styles.btn_container}>
@@ -53,24 +70,25 @@ const MainButton = () => {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent dividers>
-                    <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-                        magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-                        ullamcorper nulla non metus auctor fringilla.
-                    </Typography>
+                    {ctx.waiting &&
+                        <p>計算中</p>
+                    }
+                    {!ctx.waiting && (valid == 'impossible' || valid == 'invalid') &&
+                        <p>{valid}</p>
+                    }
+                    {!ctx.waiting && ( valid == 'valid') && 
+                        <>
+                            {items.map((item)=> {
+                                return <Typography gutterBottom>
+                                    {item.item_name} {item.item_price} {item.item_category}
+                                </Typography>
+                            })}
+                        </>
+                    }
                 </DialogContent>
             </BootstrapDialog>
         </>
     )
 }
 
-export default MainButton
+export default MainButton;

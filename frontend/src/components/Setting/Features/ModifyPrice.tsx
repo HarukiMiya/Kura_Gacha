@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import styles from '../Setting.module.css';
-import IOSSwitch from '../../IOSSwitch';
+import IOSSwitch from '../../UI/IOSSwitch';
 import Button from '@mui/material/Button';
 
 import { useContext } from 'react';
@@ -46,6 +46,8 @@ const ModifyPrice = () => {
     const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (isNaN(Number(e.target.value))) {
             setTempPrice(0);
+        } else if (Number(e.target.value) > 10000) {
+            setTempPrice(10000);
         } else {
             setTempPrice(Number(e.target.value));
         }

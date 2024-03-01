@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
-import IOSSwitch from '../../IOSSwitch';
+import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';

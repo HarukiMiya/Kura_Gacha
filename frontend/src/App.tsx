@@ -5,6 +5,7 @@ import Setting from './components/Setting/Setting';
 import MainButton from './components/MainButton/MainButton';
 import { SettingContext } from './store/setting-context';
 import useLocalStorage from './hooks/useLocalStorage';
+import { useState } from 'react';
 
 function App() {
   const [isExactPrice, setIsExactPrice] = useLocalStorage('isExactPrice', true);
@@ -17,6 +18,7 @@ function App() {
   const [isRemovedSide, setIsRemovedSide] = useLocalStorage('isRemovedSide', false);
   const [isRemovedDessert, setIsRemovedDessert] = useLocalStorage('isRemovedDessert', false);
   const [desiredPrice, setDesiredPrice] = useLocalStorage('desiredPrice', 1000);
+  const [waiting, setWaiting] = useState(false);
 
   const ctxVal = {
     isExactPrice,
@@ -39,6 +41,8 @@ function App() {
     setIsRemovedDessert,
     desiredPrice,
     setDesiredPrice,
+    waiting,
+    setWaiting,
   }
   
   return (<SettingContext.Provider value={ctxVal}>
