@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import { SettingContext } from '../../store/setting-context';
 import { getValidItems } from '../../utils/getValidItems';
 import { Item } from '../../interfaces/Sushi';
+import Button from '@mui/material/Button';
 
 const MainButton = () => {
     const ctx = useContext(SettingContext);
@@ -43,6 +44,11 @@ const MainButton = () => {
         setOpen(false);
     };
 
+    const handleClickOpenSetting = () => {
+        ctx.setOpenSetting(true);
+        handleClose();
+    }
+
     return (
         <>
             <div className={styles.btn_container}>
@@ -71,10 +77,13 @@ const MainButton = () => {
                 </IconButton>
                 <DialogContent dividers>
                     {ctx.waiting &&
-                        <p>計算中</p>
+                        <p style={{padding:'0 1rem'}}>計算中</p>
                     }
                     {!ctx.waiting && (valid == 'impossible' || valid == 'invalid') &&
-                        <p>{valid}</p>
+                        <div className={styles.invalid}>
+                            <p className={styles.invalid_child}>{ctx.desiredPrice}円ピッタリの組み合わせは見つかりませんでした。</p>
+                            <Button onClick={handleClickOpenSetting} variant="contained" style={{backgroundColor: "black", margin:'1rem 0'}}>設定を変える</Button>
+                        </div>
                     }
                     {!ctx.waiting && ( valid == 'valid') && 
                         <>

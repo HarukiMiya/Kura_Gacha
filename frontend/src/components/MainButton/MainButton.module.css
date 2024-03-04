@@ -34,3 +34,14 @@
 .btn_in:active {
     box-shadow: inset 0 1px 10px rgb(163, 163, 163);
 }
+
+.invalid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.invalid_child {
+    padding: 1rem 2rem;
+}
