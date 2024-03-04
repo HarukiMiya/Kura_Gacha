@@ -24,6 +24,8 @@ interface SettingContextProps {
     setDesiredPrice: Dispatch<SetStateAction<number>>;
     waiting: boolean;
     setWaiting: Dispatch<SetStateAction<boolean>>;
+    openSetting: boolean;
+    setOpenSetting:Dispatch<SetStateAction<boolean>>;
 }
   
 export const SettingContext = createContext<SettingContextProps>({
@@ -49,5 +51,7 @@ export const SettingContext = createContext<SettingContextProps>({
     setDesiredPrice: () => {},
     waiting: false,
     setWaiting: () => {},
+    openSetting: false,
+    setOpenSetting: () => {},
 });
 

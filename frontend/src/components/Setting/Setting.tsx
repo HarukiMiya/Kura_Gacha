@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { memo } from 'react';
 import Icon from '@mui/material/Icon';
 import styles from './Setting.module.css';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -17,26 +17,28 @@ import RemoveSide from './Features/RemoveSide';
 import RemoveDessert from './Features/RemoveDessert';
 import ModifyPrice from './Features/ModifyPrice';
 
-const Setting = React.memo(() => {
-    const [open, setOpen] = useState(false);
+import { useContext } from 'react';
+import { SettingContext } from '../../store/setting-context';
 
-    const handleClickOpen = () => {
-        setOpen(true);
+const Setting = memo(() => {
+    const { openSetting, setOpenSetting} = useContext(SettingContext);
+
+    const handleClickOpenSetting = () => {
+        setOpenSetting(true);
     };
     const handleClose = () => {
-        setOpen(false);
+        setOpenSetting(false);
     };
-
 
   return (
     <>
-        <Icon onClick={handleClickOpen} className={styles.setting_icon} fontSize='large'>
+        <Icon onClick={handleClickOpenSetting} className={styles.setting_icon} fontSize='large'>
             settings
         </Icon>
         <BootstrapDialog
             onClose={handleClose}
             aria-labelledby="customized-dialog-title"
-            open={open}
+            open={openSetting}
             fullWidth={true}
             maxWidth='sm'
         >
