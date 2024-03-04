@@ -79,9 +79,15 @@ const MainButton = () => {
                     {ctx.waiting &&
                         <p style={{padding:'0 1rem'}}>計算中</p>
                     }
-                    {!ctx.waiting && (valid == 'impossible' || valid == 'invalid') &&
+                    {!ctx.waiting && (valid == 'impossible' || valid == 'invalid') && ctx.isExactPrice &&
                         <div className={styles.invalid}>
                             <p className={styles.invalid_child}>{ctx.desiredPrice}円ピッタリの組み合わせは見つかりませんでした。</p>
+                            <Button onClick={handleClickOpenSetting} variant="contained" style={{backgroundColor: "black", margin:'1rem 0'}}>設定を変える</Button>
+                        </div>
+                    }
+                    {!ctx.waiting && (valid == 'impossible' || valid == 'invalid') && !ctx.isExactPrice &&
+                        <div className={styles.invalid}>
+                            <p className={styles.invalid_child}>{ctx.desiredPrice}円に近い組み合わせは見つかりませんでした。</p>
                             <Button onClick={handleClickOpenSetting} variant="contained" style={{backgroundColor: "black", margin:'1rem 0'}}>設定を変える</Button>
                         </div>
                     }
