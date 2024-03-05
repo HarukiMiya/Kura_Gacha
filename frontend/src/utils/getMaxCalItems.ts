@@ -1,4 +1,4 @@
-import { Item } from '../interfaces/Sushi';
+import { Item } from '../interfaces/Item';
 import originalData from '../../../data/data.json'
 import { findMaxCalsCombinationsDuplicatable } from './findMaxCalsCombinationsDuplicatable';
 import { findMaxCalsCombinationsNotDuplicatable } from './findMaxCalsCombinationsNotDuplicatable';

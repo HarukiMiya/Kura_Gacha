@@ -4,13 +4,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
 import BootstrapDialog from '../UI/BootstrapDialog';
 import { useContext } from 'react';
 import { SettingContext } from '../../store/setting-context';
 import { getValidItems } from '../../utils/getValidItems';
-import { Item } from '../../interfaces/Sushi';
+import { Item } from '../../interfaces/Item';
 import Button from '@mui/material/Button';
+
+interface ItemWithCount extends Item {
+    count: number;
+}
 
 const MainButton = () => {
     const ctx = useContext(SettingContext);
@@ -20,6 +23,14 @@ const MainButton = () => {
     const [items, setItems] = useState<Item[]>([]);
 
     const [valid, setValid] = useState<string>("");
+
+    const [groupedByCategory, setGroupedByCategory] = useState<{ [key: string]: ItemWithCount[] }>({});
+
+    const [totPrice, setTotPrice] = useState<number>(0);
+
+    const [totCal, setTotCal] = useState<number>(0);
+
+    const customOrder = ['にぎり', 'にぎり一貫', 'ぐんかん・細巻', 'サイドメニュー', 'デザート'];
 
     const handleClickOpen = () => {
         setItems([]);
@@ -34,12 +45,25 @@ const MainButton = () => {
 
     useEffect(() => {
         console.log("items", items);
-        const totalPrice: number = items.reduce((acc, comb) => acc + comb.item_price, 0);
-        console.log("totPrice",totalPrice);
-        const totalCal: number = items.reduce((acc, comb) => acc + comb.item_kcal, 0);
-        console.log("totalCal", totalCal);
+        setTotPrice(items.reduce((acc, comb) => acc + comb.item_price, 0));
+        setTotCal(items.reduce((acc, comb) => acc + comb.item_kcal, 0));
+        
+        const groupedByCategoryTemp: { [key: string]: ItemWithCount[] }  = {};
+        items.forEach(item => {
+            if (!groupedByCategoryTemp[item.item_category]) {
+                groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
+            }
+            else {
+                const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name == item.item_name);
+                if (existingItem) {
+                    existingItem.count += 1;
+                } else {
+                    groupedByCategoryTemp[item.item_category].push({ ...item, count: 1 });
+                }
+            }
+        });
+        setGroupedByCategory(groupedByCategoryTemp);
     }, [items]);
-
     const handleClose = () => {
         setOpen(false);
     };
@@ -75,7 +99,7 @@ const MainButton = () => {
                 >
                     <CloseIcon />
                 </IconButton>
-                <DialogContent dividers>
+                <DialogContent dividers sx={{"&&": {px:7, py: 3}}}>
                     {ctx.waiting &&
                         <p style={{padding:'0 1rem'}}>計算中</p>
                     }
@@ -93,11 +117,45 @@ const MainButton = () => {
                     }
                     {!ctx.waiting && ( valid == 'valid') && 
                         <>
-                            {items.map((item)=> {
-                                return <Typography gutterBottom>
-                                    {item.item_name} {item.item_price} {item.item_category}
-                                </Typography>
-                            })}
+                            {Object.keys(groupedByCategory).sort((a, b) => {
+                                // Sort by the custom order : ['にぎり', 'にぎり一貫', 'ぐんかん・細巻', 'サイドメニュー', 'デザート']
+                                    return customOrder.indexOf(a) - customOrder.indexOf(b);
+                                }).map((category)=> (
+                                <div className={styles.container}>
+                                    <div className={styles.category}>
+                                        <div>{category}</div>
+                                        <img src={`../src/assets/${category}.png`} height="25" style={{padding:'0 10px'}}/>
+                                    </div>
+                                    <div className={styles.items_container}>
+                                        {groupedByCategory[category].map((item) =>(
+                                            <div className={styles.item_container}>
+                                                <div className={styles.amount}>{item.count}x</div>
+                                                <div className={styles.name}>{item.item_name}</div>
+                                                <div className={styles.price_cal}>
+                                                    <div className={styles.price}>{item.item_price}円 </div>
+                                                    <div className={styles.cal}>{item.item_kcal}kcal</div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                            <div className={styles.result_container}>
+                                <div className={styles.content_children}>
+                                    <div className={styles.content_item_left_up}>ひこうしき</div>
+                                    <div className={styles.content_item_left_bottom}>非公式</div>
+                                </div>
+                                <div className={styles.result_tot_container}>
+                                    <div className={styles.tot_container}>
+                                        <div className={styles.tot}>合計</div>
+                                        <div className={styles.yen}>
+                                            <div className={styles.tot_price}>{totPrice}</div>
+                                            <div className={styles.tot_yen}>円</div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.result_cal}>{totCal}kcal</div>
+                                </div>
+                            </div>
                         </>
                     }
                 </DialogContent>
