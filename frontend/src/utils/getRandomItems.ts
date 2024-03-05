@@ -1,5 +1,5 @@
 import data from '../../../data/data.json';
-import { Item } from '../interfaces/Sushi';
+import { Item } from '../interfaces/Item';
 import { getMaxCalItems } from './getMaxCalItems';
 
 export const getRandomItems = (
