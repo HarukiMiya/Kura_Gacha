@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
 
-interface SettingContextProps {
+export interface SettingContextProps {
     isExactPrice: boolean;
     setIsExactPrice: Dispatch<SetStateAction<boolean>>;
     isDuplicatable: boolean;

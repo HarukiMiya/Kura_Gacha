@@ -1,21 +1,18 @@
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const ExactPrice = () => {
     const { isExactPrice, setIsExactPrice} = useContext(SettingContext);
 
-    useEffect(() => {
-        localStorage.setItem('isExactPrice', JSON.stringify(isExactPrice));
-    }, [isExactPrice]);
+    useUpdateLocalStorage('isExactPrice', isExactPrice);
 
-    const handleExactPrice = () => {
-        setIsExactPrice(prev => !prev);
-    };
+    const handleExactPrice = handleToggle(setIsExactPrice);
 
     return (
         <div className={styles.setting_content}>

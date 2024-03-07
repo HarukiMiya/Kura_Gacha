@@ -1,22 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const MaxCal = () => {
     const { isMaxCal, setIsMaxCal} = useContext(SettingContext);
 
-    useEffect(() => {
-        localStorage.setItem('isMaxCal', JSON.stringify(isMaxCal));
-    }, [isMaxCal]);
+    useUpdateLocalStorage('isMaxCal', isMaxCal);
 
-    const handleMaxCal = () => {
-        setIsMaxCal(prev => !prev);
-    };
+    const handleMaxCal = handleToggle(setIsMaxCal);
 
     return (
         <div className={styles.setting_content}>

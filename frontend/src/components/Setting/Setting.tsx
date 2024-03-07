@@ -23,12 +23,8 @@ import { SettingContext } from '../../store/setting-context';
 const Setting = memo(() => {
     const { openSetting, setOpenSetting} = useContext(SettingContext);
 
-    const handleClickOpenSetting = () => {
-        setOpenSetting(true);
-    };
-    const handleClose = () => {
-        setOpenSetting(false);
-    };
+    const handleClickOpenSetting = () => setOpenSetting(true);
+    const handleClose = () => setOpenSetting(false);
 
   return (
     <>

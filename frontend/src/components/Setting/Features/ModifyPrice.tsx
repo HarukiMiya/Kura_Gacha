@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import styles from '../Setting.module.css';
@@ -7,42 +6,25 @@ import Button from '@mui/material/Button';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
-import useLocalStorage from '../../../hooks/useLocalStorage';
+import useLocalStorageBoolean from '../../../hooks/useLocalStorageBoolean';
+import useLocalStorageNumber from '../../../hooks/useLocalStorageNumber';
+
+import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
+import { handleChangePriceUtil } from '../../../utils/handleChangePriceUtil';
+import { handleSubmitChangePrice } from '../../../utils/handleSubmitChangePrice';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const ModifyPrice = () => {
     const { desiredPrice, setDesiredPrice} = useContext(SettingContext);
-    const [isChangeable, setIsChangeable] = useLocalStorage('isChangeable', false);
-    const [tempPrice, setTempPrice] = useLocalStorage('desiredPrice', desiredPrice);
+    const [isChangeable, setIsChangeable] = useLocalStorageBoolean('isChangeable', false);
+    const [tempPrice, setTempPrice] = useLocalStorageNumber('desiredPrice', desiredPrice);
 
-    useEffect(() => {
-        localStorage.setItem('isChangeable', JSON.stringify(isChangeable));
-    }, [isChangeable]);
+    useUpdateLocalStorage('isChangeable', isChangeable);
+    useUpdateLocalStorage('desiredPrice', desiredPrice);
 
-    useEffect(() => {
-        localStorage.setItem('desiredPrice', JSON.stringify(desiredPrice));
-    }, [desiredPrice]);
-
-
-    const handleChangeable = () => {
-        setIsChangeable((prev: boolean) => !prev);
-    };
-
-    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (isNaN(Number(e.target.value))) {
-            setTempPrice(0);
-        } else if (Number(e.target.value) > 10000) {
-            setTempPrice(10000);
-        } else {
-            setTempPrice(Number(e.target.value));
-        }
-    }
-
-    const hundleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setDesiredPrice(Number((e.currentTarget.elements[0] as HTMLInputElement).value));
-        setTempPrice(Number((e.currentTarget.elements[0] as HTMLInputElement).value));
-        setIsChangeable((prev: boolean) => !prev);
-    }
+    const handleChangeable = handleToggle(setIsChangeable);
+    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => handleChangePriceUtil(e, setTempPrice);
+    const hundleSubmit = (e: React.FormEvent<HTMLFormElement>) => handleSubmitChangePrice(e, setDesiredPrice, setTempPrice, setIsChangeable);
 
     return (
         <div className={styles.setting_change}>

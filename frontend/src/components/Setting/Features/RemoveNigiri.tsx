@@ -1,21 +1,18 @@
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const RemoveNigiri = () => {
     const { isRemovedNigiri, setIsRemovedNigiri} = useContext(SettingContext);
 
-    useEffect(() => {
-        localStorage.setItem('isRemovedNigiri', JSON.stringify(isRemovedNigiri));
-    }, [isRemovedNigiri]);
+    useUpdateLocalStorage('isRemovedNigiri', isRemovedNigiri);
 
-    const handleRemovedNigiri = () => {
-        setIsRemovedNigiri(prev => !prev);
-    };
+    const handleRemovedNigiri = handleToggle(setIsRemovedNigiri);
 
     return (
         <div className={styles.setting_content}>

@@ -1,5 +1,5 @@
 import styles from './MainButton.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
@@ -7,66 +7,25 @@ import CloseIcon from '@mui/icons-material/Close';
 import BootstrapDialog from '../UI/BootstrapDialog';
 import { useContext } from 'react';
 import { SettingContext } from '../../store/setting-context';
-import { getValidItems } from '../../utils/getValidItems';
 import { Item } from '../../interfaces/Item';
 import Button from '@mui/material/Button';
-
-interface ItemWithCount extends Item {
-    count: number;
-}
+import { handleClickOpenMainButton } from '../../utils/handleClickOpenMainButton';
+import { useResult } from '../../hooks/useResult';
 
 const MainButton = () => {
     const ctx = useContext(SettingContext);
 
     const [open, setOpen] = useState<boolean>(false);
-
     const [items, setItems] = useState<Item[]>([]);
-
     const [valid, setValid] = useState<string>("");
-
-    const [groupedByCategory, setGroupedByCategory] = useState<{ [key: string]: ItemWithCount[] }>({});
-
-    const [totPrice, setTotPrice] = useState<number>(0);
-
-    const [totCal, setTotCal] = useState<number>(0);
 
     const customOrder = ['にぎり', 'にぎり一貫', 'ぐんかん・細巻', 'サイドメニュー', 'デザート'];
 
-    const handleClickOpen = () => {
-        setItems([]);
-        setOpen(true);
-        ctx.setWaiting(true);
-        setTimeout(async () => {
-            setValid(getValidItems(ctx, setItems));
-            ctx.setWaiting(false);
-            // console.log(items);
-        }, 500);
-    };
+    const handleClickOpen = () => handleClickOpenMainButton(ctx,setItems,setOpen,setValid);
 
-    useEffect(() => {
-        console.log("items", items);
-        setTotPrice(items.reduce((acc, comb) => acc + comb.item_price, 0));
-        setTotCal(items.reduce((acc, comb) => acc + comb.item_kcal, 0));
-        
-        const groupedByCategoryTemp: { [key: string]: ItemWithCount[] }  = {};
-        items.forEach(item => {
-            if (!groupedByCategoryTemp[item.item_category]) {
-                groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
-            }
-            else {
-                const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name == item.item_name);
-                if (existingItem) {
-                    existingItem.count += 1;
-                } else {
-                    groupedByCategoryTemp[item.item_category].push({ ...item, count: 1 });
-                }
-            }
-        });
-        setGroupedByCategory(groupedByCategoryTemp);
-    }, [items]);
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const { totPrice, totCal, groupedByCategory } = useResult(items);
+
+    const handleClose = () => setOpen(false);
 
     const handleClickOpenSetting = () => {
         ctx.setOpenSetting(true);
