@@ -1,27 +1,15 @@
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const RemoveGunkan = () => {
     const { isRemovedGunkan, setIsRemovedGunkan} = useContext(SettingContext);
 
-    useEffect(() => {
-        const dataIsRemovedGunkan = localStorage.getItem('isRemovedGunkan');
-        if (dataIsRemovedGunkan != null) setIsRemovedGunkan(JSON.parse(dataIsRemovedGunkan));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('isRemovedGunkan', JSON.stringify(isRemovedGunkan));
-    }, [isRemovedGunkan]);
-
-    const handleRemovedGunkan = () => {
-        setIsRemovedGunkan(prev => !prev);
-    };
+    const handleRemovedGunkan = handleToggle(setIsRemovedGunkan);
 
     return (
         <div className={styles.setting_content}>

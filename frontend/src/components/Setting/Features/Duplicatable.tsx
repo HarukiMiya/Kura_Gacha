@@ -1,27 +1,15 @@
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const Duplicatable = () => {
     const { isDuplicatable, setIsDuplicatable} = useContext(SettingContext);
 
-    useEffect(() => {
-        const dataIsDuplicatable = localStorage.getItem('isDuplicatable');
-        if (dataIsDuplicatable != null) setIsDuplicatable(JSON.parse(dataIsDuplicatable));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('isDuplicatable', JSON.stringify(isDuplicatable));
-    }, [isDuplicatable]);
-
-    const handleDuplicatable = () => {
-        setIsDuplicatable(prev => !prev);
-    };
+    const handleDuplicatable = handleToggle(setIsDuplicatable);
 
     return (
         <div className={styles.setting_content}>

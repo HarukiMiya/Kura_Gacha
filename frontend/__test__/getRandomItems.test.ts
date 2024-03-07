@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Item } from '../src/interfaces/Sushi';
+import { Item } from '../src/interfaces/Item';
 import { getRandomItems } from '../src/utils/getRandomItems';
 
 interface Ctx {
@@ -32,14 +32,11 @@ const mockGetValidItems = (ctx:Ctx) => {
             ctx.isRemovedDessert,
             ctx.desiredPrice
         );
-        console.log("currItems",currItems);
-        if (currItems.length != 0 && currItems[0].item_name == 'impossible') {
-            console.log("currItems", currItems)
-            console.log(currItems === undefined)
+        if (currItems.length != 0 && currItems[0].item_name === 'impossible') {
             impossible = true;
             return [];
         }
-        if (currItems.length != 0 && currItems[0].item_name != 'impossible' && currItems[0].item_name != 'invalid') {
+        if (currItems.length !== 0 && currItems[0].item_name !== 'impossible' && currItems[0].item_name !== 'invalid') {
             items = currItems;
             return items;
         }

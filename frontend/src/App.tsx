@@ -4,20 +4,21 @@ import Footer from './components/Footer/Footer';
 import Setting from './components/Setting/Setting';
 import MainButton from './components/MainButton/MainButton';
 import { SettingContext } from './store/setting-context';
-import useLocalStorage from './hooks/useLocalStorage';
+import useLocalStorageBoolean from './hooks/useLocalStorageBoolean';
+import useLocalStorageNumber from './hooks/useLocalStorageNumber';
 import { useState } from 'react';
 
 function App() {
-  const [isExactPrice, setIsExactPrice] = useLocalStorage('isExactPrice', true);
-  const [isDuplicatable, setIsDuplicatable] = useLocalStorage('isDuplicatable', true);
-  const [isMaxCal, setIsMaxCal] = useLocalStorage('isMaxCal', false);
-  const [isRemovedAlco, setIsRemovedAlco] = useLocalStorage('isRemovedAlco', true);
-  const [isRemovedNigiri, setIsRemovedNigiri] = useLocalStorage('isRemovedNigiri', false);
-  const [isRemovedNigiriIkkan, setIsRemovedNigiriIkkan] = useLocalStorage('isRemovedNigiriIkkan', false);
-  const [isRemovedGunkan, setIsRemovedGunkan] = useLocalStorage('isRemovedGunkan', false);
-  const [isRemovedSide, setIsRemovedSide] = useLocalStorage('isRemovedSide', false);
-  const [isRemovedDessert, setIsRemovedDessert] = useLocalStorage('isRemovedDessert', false);
-  const [desiredPrice, setDesiredPrice] = useLocalStorage('desiredPrice', 1000);
+  const [isExactPrice, setIsExactPrice] = useLocalStorageBoolean('isExactPrice', true);
+  const [isDuplicatable, setIsDuplicatable] = useLocalStorageBoolean('isDuplicatable', true);
+  const [isMaxCal, setIsMaxCal] = useLocalStorageBoolean('isMaxCal', false);
+  const [isRemovedAlco, setIsRemovedAlco] = useLocalStorageBoolean('isRemovedAlco', true);
+  const [isRemovedNigiri, setIsRemovedNigiri] = useLocalStorageBoolean('isRemovedNigiri', false);
+  const [isRemovedNigiriIkkan, setIsRemovedNigiriIkkan] = useLocalStorageBoolean('isRemovedNigiriIkkan', false);
+  const [isRemovedGunkan, setIsRemovedGunkan] = useLocalStorageBoolean('isRemovedGunkan', false);
+  const [isRemovedSide, setIsRemovedSide] = useLocalStorageBoolean('isRemovedSide', false);
+  const [isRemovedDessert, setIsRemovedDessert] = useLocalStorageBoolean('isRemovedDessert', false);
+  const [desiredPrice, setDesiredPrice] = useLocalStorageNumber('desiredPrice', 1000);
   const [waiting, setWaiting] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
 

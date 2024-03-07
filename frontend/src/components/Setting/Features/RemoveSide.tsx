@@ -1,27 +1,15 @@
-import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import styles from '../Setting.module.css';
 import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const RemoveSide = () => {
     const { isRemovedSide, setIsRemovedSide} = useContext(SettingContext);
 
-    useEffect(() => {
-        const dataIsRemovedSide = localStorage.getItem('isRemovedSide');
-        if (dataIsRemovedSide != null) setIsRemovedSide(JSON.parse(dataIsRemovedSide));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('isRemovedSide', JSON.stringify(isRemovedSide));
-    }, [isRemovedSide]);
-
-    const handleRemovedSide = () => {
-        setIsRemovedSide(prev => !prev);
-    };
+    const handleRemovedSide = handleToggle(setIsRemovedSide);
 
     return (
         <div className={styles.setting_content}>

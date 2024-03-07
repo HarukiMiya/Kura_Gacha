@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import styles from '../Setting.module.css';
@@ -7,58 +6,21 @@ import Button from '@mui/material/Button';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import useLocalStorageBoolean from '../../../hooks/useLocalStorageBoolean';
+import useLocalStorageNumber from '../../../hooks/useLocalStorageNumber';
+
+import { handleChangePriceUtil } from '../../../utils/handleChangePriceUtil';
+import { handleSubmitChangePrice } from '../../../utils/handleSubmitChangePrice';
+import { handleToggle } from '../../../utils/handleToggle';
 
 const ModifyPrice = () => {
     const { desiredPrice, setDesiredPrice} = useContext(SettingContext);
+    const [isChangeable, setIsChangeable] = useLocalStorageBoolean('isChangeable', false);
+    const [tempPrice, setTempPrice] = useLocalStorageNumber('desiredPrice', desiredPrice);
 
-    const [isChangeable, setIsChangeable] = useState(():boolean => {
-        const localData = localStorage.getItem("isChangeable");
-        return localData ? JSON.parse(localData) : false;
-    });
-
-    const [tempPrice, setTempPrice] = useState(():number => {
-        const localData = localStorage.getItem("desiredPrice");
-        return localData ? JSON.parse(localData) : desiredPrice;
-    });
-
-    
-    useEffect(() => {
-        const dataIsChangeable = localStorage.getItem('isChangeable');
-        if (dataIsChangeable != null) setIsChangeable(JSON.parse(dataIsChangeable));
-        const dataDesiredPrice = localStorage.getItem('desiredPrice');
-        if (dataDesiredPrice != null) setDesiredPrice(JSON.parse(dataDesiredPrice));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('isChangeable', JSON.stringify(isChangeable));
-    }, [isChangeable]);
-
-    useEffect(() => {
-        localStorage.setItem('desiredPrice', JSON.stringify(desiredPrice));
-    }, [desiredPrice]);
-
-
-    const handleChangeable = () => {
-        setIsChangeable(prev => !prev);
-    };
-
-    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (isNaN(Number(e.target.value))) {
-            setTempPrice(0);
-        } else if (Number(e.target.value) > 10000) {
-            setTempPrice(10000);
-        } else {
-            setTempPrice(Number(e.target.value));
-        }
-    }
-
-    const hundleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setDesiredPrice(Number((e.currentTarget.elements[0] as HTMLInputElement).value));
-        setTempPrice(Number((e.currentTarget.elements[0] as HTMLInputElement).value));
-        setIsChangeable(prev => !prev);
-    }
+    const handleChangeable = handleToggle(setIsChangeable);
+    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => handleChangePriceUtil(e, setTempPrice);
+    const hundleSubmit = (e: React.FormEvent<HTMLFormElement>) => handleSubmitChangePrice(e, setDesiredPrice, setTempPrice, setIsChangeable);
 
     return (
         <div className={styles.setting_change}>
