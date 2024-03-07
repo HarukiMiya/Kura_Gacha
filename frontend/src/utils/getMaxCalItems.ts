@@ -19,7 +19,7 @@ export const getMaxCalItems =
     filteredData.forEach((item: Item) => {
         const combination: UniqueCombination = { item_price: item.item_price, item_kcal: item.item_kcal };
         if (!uniqueCombinations.some((existingCombination) =>
-            existingCombination.item_price == combination.item_price && existingCombination.item_kcal == combination.item_kcal
+            existingCombination.item_price === combination.item_price && existingCombination.item_kcal === combination.item_kcal
         )) {
             uniqueCombinations.push(combination);
         }
@@ -34,7 +34,7 @@ export const getMaxCalItems =
     : findMaxCalsCombinationsNotDuplicatable(filteredData, desiredPrice);
 
     for (const comb of maxPriceCalCombs) {
-        const matchingItems: Item[] = filteredData.filter((item: Item) => item.item_price == comb.item_price && item.item_kcal == comb.item_kcal);
+        const matchingItems: Item[] = filteredData.filter((item: Item) => item.item_price === comb.item_price && item.item_kcal === comb.item_kcal);
 
         if (matchingItems.length > 0) {
             const chosenItem: Item = matchingItems[Math.floor(Math.random() * matchingItems.length)];

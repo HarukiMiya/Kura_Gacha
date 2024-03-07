@@ -15,7 +15,6 @@ export const useResult = (items:Item[]) => {
     });
 
     useEffect(() => {
-        console.log("items", items);
         const totPrice = items.reduce((acc, comb) => acc + comb.item_price, 0);
         const totCal = items.reduce((acc, comb) => acc + comb.item_kcal, 0);
         
@@ -25,7 +24,7 @@ export const useResult = (items:Item[]) => {
                 groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
             }
             else {
-                const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name == item.item_name);
+                const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name === item.item_name);
                 if (existingItem) {
                     existingItem.count += 1;
                 } else {

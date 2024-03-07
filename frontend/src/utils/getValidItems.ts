@@ -18,10 +18,7 @@ export const getValidItems = (ctx:Ctx, setItems: React.Dispatch<React.SetStateAc
             ctx.isRemovedDessert,
             ctx.desiredPrice
         );
-        console.log("currItems",currItems);
-        if (currItems.length != 0 && currItems[0].item_name == 'impossible') {
-            console.log("currItems", currItems)
-            console.log(currItems === undefined)
+        if (currItems.length != 0 && currItems[0].item_name === 'impossible') {
             impossible = true;
             return 'impossible';
         }

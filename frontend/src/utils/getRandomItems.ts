@@ -21,10 +21,10 @@ export const getRandomItems = (
 
     const filteredData = data.filter(item => {
         if (isRemovedAlco && item.is_alcohol) return false;
-        if (isRemovedNigiri && item.item_category == "にぎり") return false;
-        if (isRemovedNigiriIkkan && item.item_category == "にぎり一貫") return false;
-        if (isRemovedGunkan && item.item_category == "ぐんかん・細巻") return false;
-        if (isRemovedSide && item.item_category == "サイドメニュー") return false;
+        if (isRemovedNigiri && item.item_category === "にぎり") return false;
+        if (isRemovedNigiriIkkan && item.item_category === "にぎり一貫") return false;
+        if (isRemovedGunkan && item.item_category === "ぐんかん・細巻") return false;
+        if (isRemovedSide && item.item_category === "サイドメニュー") return false;
         if (isRemovedDessert && item.item_category == "デザート") return false;
         return true;
     });
@@ -38,7 +38,7 @@ export const getRandomItems = (
             desiredPrice)
         if (result != "impossible" && result != "invalid") {
             return result;
-        } else if (result == "invalid") {
+        } else if (result === "invalid") {
             return [{item_name:'invalid', item_price:0, item_kcal:0, item_category:'', is_alcohol:false }]
         } else {
             return [{item_name:'impossible', item_price:0, item_kcal:0, item_category:'', is_alcohol:false }];
@@ -51,7 +51,6 @@ export const getRandomItems = (
         const sushiPrice: number = sushi.item_price;
 
         if (!isDuplicatable && sushiCombination.some((item) => item == sushi)) {
-            console.log("executed", sushiCombination, limit);
             c++;
             if (c > 50 || sushiCombination.length > limit) return [];
             continue;
@@ -61,7 +60,7 @@ export const getRandomItems = (
     }
 
     if (isExactPrice) {
-        if (currentPrice == desiredPrice) {
+        if (currentPrice === desiredPrice) {
             return sushiCombination;
         } else {
             return [{item_name:'invalid', item_price:0, item_kcal:0, item_category:'', is_alcohol:false }];
