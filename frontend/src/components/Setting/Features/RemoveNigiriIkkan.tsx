@@ -10,12 +10,6 @@ const RemoveNigiriIkkan = () => {
     const { isRemovedNigiriIkkan, setIsRemovedNigiriIkkan} = useContext(SettingContext);
 
     useEffect(() => {
-        const dataIsRemovedNigiriIkkan = localStorage.getItem('isRemovedNigiriIkkan');
-        if (dataIsRemovedNigiriIkkan != null) setIsRemovedNigiriIkkan(JSON.parse(dataIsRemovedNigiriIkkan));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('isRemovedNigiriIkkan', JSON.stringify(isRemovedNigiriIkkan));
     }, [isRemovedNigiriIkkan]);
 

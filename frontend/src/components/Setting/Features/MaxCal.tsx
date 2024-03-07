@@ -11,11 +11,6 @@ const MaxCal = () => {
     const { isMaxCal, setIsMaxCal} = useContext(SettingContext);
 
     useEffect(() => {
-        const dataIsMaxCal = localStorage.getItem('isMaxCal');
-        if (dataIsMaxCal != null) setIsMaxCal(JSON.parse(dataIsMaxCal));
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('isMaxCal', JSON.stringify(isMaxCal));
     }, [isMaxCal]);
 

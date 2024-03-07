@@ -8,13 +8,7 @@ import { SettingContext } from '../../../store/setting-context';
 
 const RemoveSide = () => {
     const { isRemovedSide, setIsRemovedSide} = useContext(SettingContext);
-
-    useEffect(() => {
-        const dataIsRemovedSide = localStorage.getItem('isRemovedSide');
-        if (dataIsRemovedSide != null) setIsRemovedSide(JSON.parse(dataIsRemovedSide));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
+    
     useEffect(() => {
         localStorage.setItem('isRemovedSide', JSON.stringify(isRemovedSide));
     }, [isRemovedSide]);

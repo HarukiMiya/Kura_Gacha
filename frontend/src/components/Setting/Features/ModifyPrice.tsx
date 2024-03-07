@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import styles from '../Setting.module.css';
@@ -7,28 +7,12 @@ import Button from '@mui/material/Button';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 const ModifyPrice = () => {
     const { desiredPrice, setDesiredPrice} = useContext(SettingContext);
-
-    const [isChangeable, setIsChangeable] = useState(():boolean => {
-        const localData = localStorage.getItem("isChangeable");
-        return localData ? JSON.parse(localData) : false;
-    });
-
-    const [tempPrice, setTempPrice] = useState(():number => {
-        const localData = localStorage.getItem("desiredPrice");
-        return localData ? JSON.parse(localData) : desiredPrice;
-    });
-
-    
-    useEffect(() => {
-        const dataIsChangeable = localStorage.getItem('isChangeable');
-        if (dataIsChangeable != null) setIsChangeable(JSON.parse(dataIsChangeable));
-        const dataDesiredPrice = localStorage.getItem('desiredPrice');
-        if (dataDesiredPrice != null) setDesiredPrice(JSON.parse(dataDesiredPrice));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const [isChangeable, setIsChangeable] = useLocalStorage('isChangeable', false);
+    const [tempPrice, setTempPrice] = useLocalStorage('desiredPrice', desiredPrice);
 
     useEffect(() => {
         localStorage.setItem('isChangeable', JSON.stringify(isChangeable));
@@ -40,7 +24,7 @@ const ModifyPrice = () => {
 
 
     const handleChangeable = () => {
-        setIsChangeable(prev => !prev);
+        setIsChangeable((prev: boolean) => !prev);
     };
 
     const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +41,7 @@ const ModifyPrice = () => {
         e.preventDefault();
         setDesiredPrice(Number((e.currentTarget.elements[0] as HTMLInputElement).value));
         setTempPrice(Number((e.currentTarget.elements[0] as HTMLInputElement).value));
-        setIsChangeable(prev => !prev);
+        setIsChangeable((prev: boolean) => !prev);
     }
 
     return (

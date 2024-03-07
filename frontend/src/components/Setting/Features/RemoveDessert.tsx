@@ -10,12 +10,6 @@ const RemoveDessert = () => {
     const { isRemovedDessert, setIsRemovedDessert} = useContext(SettingContext);
 
     useEffect(() => {
-        const dataIsRemovedDessert = localStorage.getItem('isRemovedDessert');
-        if (dataIsRemovedDessert != null) setIsRemovedDessert(JSON.parse(dataIsRemovedDessert));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('isRemovedDessert', JSON.stringify(isRemovedDessert));
     }, [isRemovedDessert]);
 

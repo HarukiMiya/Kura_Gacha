@@ -10,12 +10,6 @@ const RemoveAlco = () => {
     const { isRemovedAlco, setIsRemovedAlco} = useContext(SettingContext);
 
     useEffect(() => {
-        const dataIsRemovedAlco = localStorage.getItem('isRemovedAlco');
-        if (dataIsRemovedAlco != null) setIsRemovedAlco(JSON.parse(dataIsRemovedAlco));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('isRemovedAlco', JSON.stringify(isRemovedAlco));
     }, [isRemovedAlco]);
 
