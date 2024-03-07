@@ -5,13 +5,10 @@ import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
-import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
 import { handleToggle } from '../../../utils/handleToggle';
 
 const MaxCal = () => {
     const { isMaxCal, setIsMaxCal} = useContext(SettingContext);
-
-    useUpdateLocalStorage('isMaxCal', isMaxCal);
 
     const handleMaxCal = handleToggle(setIsMaxCal);
 

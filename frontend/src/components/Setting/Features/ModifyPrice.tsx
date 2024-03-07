@@ -9,7 +9,6 @@ import { SettingContext } from '../../../store/setting-context';
 import useLocalStorageBoolean from '../../../hooks/useLocalStorageBoolean';
 import useLocalStorageNumber from '../../../hooks/useLocalStorageNumber';
 
-import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
 import { handleChangePriceUtil } from '../../../utils/handleChangePriceUtil';
 import { handleSubmitChangePrice } from '../../../utils/handleSubmitChangePrice';
 import { handleToggle } from '../../../utils/handleToggle';
@@ -18,9 +17,6 @@ const ModifyPrice = () => {
     const { desiredPrice, setDesiredPrice} = useContext(SettingContext);
     const [isChangeable, setIsChangeable] = useLocalStorageBoolean('isChangeable', false);
     const [tempPrice, setTempPrice] = useLocalStorageNumber('desiredPrice', desiredPrice);
-
-    useUpdateLocalStorage('isChangeable', isChangeable);
-    useUpdateLocalStorage('desiredPrice', desiredPrice);
 
     const handleChangeable = handleToggle(setIsChangeable);
     const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => handleChangePriceUtil(e, setTempPrice);

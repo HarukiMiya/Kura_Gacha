@@ -4,13 +4,10 @@ import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
-import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
 import { handleToggle } from '../../../utils/handleToggle';
 
 const RemoveAlco = () => {
     const { isRemovedAlco, setIsRemovedAlco} = useContext(SettingContext);
-
-    useUpdateLocalStorage('isRemovedAlco', isRemovedAlco);
 
     const handleRemovedAlco = handleToggle(setIsRemovedAlco);
 

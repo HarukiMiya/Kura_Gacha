@@ -4,13 +4,10 @@ import IOSSwitch from '../../UI/IOSSwitch';
 
 import { useContext } from 'react';
 import { SettingContext } from '../../../store/setting-context';
-import { useUpdateLocalStorage } from '../../../hooks/useUpdateLocalStorage';
 import { handleToggle } from '../../../utils/handleToggle';
 
 const RemoveDessert = () => {
     const { isRemovedDessert, setIsRemovedDessert} = useContext(SettingContext);
-
-    useUpdateLocalStorage('isRemovedDessert', isRemovedDessert);
 
     const handleRemovedDessert = handleToggle(setIsRemovedDessert);
 
