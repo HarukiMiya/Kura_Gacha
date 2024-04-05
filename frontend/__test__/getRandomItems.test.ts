@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { Item } from '../src/interfaces/Item';
 import { getRandomItems } from '../src/utils/getRandomItems';
+import { ItemWithCount } from '../src/interfaces/ItemWithCount';
+import { k } from 'vitest/dist/reporters-MmQN-57K';
 
 interface Ctx {
     isExactPrice: boolean,
@@ -205,6 +207,159 @@ describe("getRandomItems", () => {
             const totalPrice: number = items.reduce((acc, comb) => acc + comb.item_price, 0);
             expect(totalPrice).toBeGreaterThanOrEqual(900);
             expect(totalPrice).toBeLessThanOrEqual(1100);
+        });
+    }
+
+    for (let i = 0; i < 1000; i++) {
+        it(`isExactPrice:'false' & isDuplicatable:'false' & isMaxCal:'false' - Test 3.1`, () => {
+            const ctx = {
+                desiredPrice: 5000,
+                isExactPrice: true,
+                isDuplicatable: true,
+                isMaxCal: false,
+                isRemovedAlco: true,
+                isRemovedNigiri: false,
+                isRemovedNigiriIkkan: false,
+                isRemovedGunkan: false,
+                isRemovedSide: false,
+                isRemovedDessert: false,
+            };
+            const items = mockGetValidItems(ctx);
+            console.log(items);
+            const groupedByCategoryTemp: { [key: string]: ItemWithCount[] }  = {};
+            items.forEach(item => {
+                if (!groupedByCategoryTemp[item.item_category]) {
+                    groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
+                }
+                else {
+                    const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name === item.item_name);
+                    if (existingItem) {
+                        existingItem.count += 1;
+                    } else {
+                        groupedByCategoryTemp[item.item_category].push({ ...item, count: 1 });
+                    }
+                }
+            });
+            Object.keys(groupedByCategoryTemp).forEach((category) => {
+                groupedByCategoryTemp[category].forEach((item) =>(
+                    expect(item.count).toBe(1)
+                ));
+            })
+        });
+    }
+
+    for (let i = 0; i < 1000; i++) {
+        it(`isExactPrice:'false' & isDuplicatable:'false' & isMaxCal:'false' - Test 3.2`, () => {
+            const ctx = {
+                desiredPrice: 10000,
+                isExactPrice: true,
+                isDuplicatable: true,
+                isMaxCal: false,
+                isRemovedAlco: true,
+                isRemovedNigiri: false,
+                isRemovedNigiriIkkan: false,
+                isRemovedGunkan: false,
+                isRemovedSide: false,
+                isRemovedDessert: false,
+            };
+            const items = mockGetValidItems(ctx);
+            console.log(items);
+            const groupedByCategoryTemp: { [key: string]: ItemWithCount[] }  = {};
+            items.forEach(item => {
+                if (!groupedByCategoryTemp[item.item_category]) {
+                    groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
+                }
+                else {
+                    const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name === item.item_name);
+                    if (existingItem) {
+                        existingItem.count += 1;
+                    } else {
+                        groupedByCategoryTemp[item.item_category].push({ ...item, count: 1 });
+                    }
+                }
+            });
+            Object.keys(groupedByCategoryTemp).forEach((category) => {
+                groupedByCategoryTemp[category].forEach((item) =>(
+                    expect(item.count).toBe(1)
+                ));
+            })
+        });
+    }
+
+    for (let i = 0; i < 1000; i++) {
+        it(`isExactPrice:'false' & isDuplicatable:'false' & isMaxCal:'true' - Test 3.3`, () => {
+            const ctx = {
+                desiredPrice: 5000,
+                isExactPrice: false,
+                isDuplicatable: false,
+                isMaxCal: true,
+                isRemovedAlco: true,
+                isRemovedNigiri: false,
+                isRemovedNigiriIkkan: false,
+                isRemovedGunkan: false,
+                isRemovedSide: false,
+                isRemovedDessert: false,
+            };
+            const items = mockGetValidItems(ctx);
+            console.log(items);
+            const groupedByCategoryTemp: { [key: string]: ItemWithCount[] }  = {};
+            items.forEach(item => {
+                if (!groupedByCategoryTemp[item.item_category]) {
+                    groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
+                }
+                else {
+                    const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name === item.item_name);
+                    if (existingItem) {
+                        existingItem.count += 1;
+                    } else {
+                        groupedByCategoryTemp[item.item_category].push({ ...item, count: 1 });
+                    }
+                }
+            });
+            Object.keys(groupedByCategoryTemp).forEach((category) => {
+                groupedByCategoryTemp[category].forEach((item) =>(
+                    expect(item.count).toBe(1)
+                ));
+            })
+        });
+    }
+
+    for (let i = 0; i < 1000; i++) {
+        it(`isExactPrice:'false' & isDuplicatable:'false' & isMaxCal:'true' - Test 3.4`, () => {
+            const ctx = {
+                desiredPrice: 10000,
+                isExactPrice: false,
+                isDuplicatable: false,
+                isMaxCal: true,
+                isRemovedAlco: true,
+                isRemovedNigiri: false,
+                isRemovedNigiriIkkan: false,
+                isRemovedGunkan: false,
+                isRemovedSide: false,
+                isRemovedDessert: false,
+            };
+            const items = mockGetValidItems(ctx);
+            console.log(items);
+            const groupedByCategoryTemp: { [key: string]: ItemWithCount[] }  = {};
+            items.forEach(item => {
+                if (!groupedByCategoryTemp[item.item_category]) {
+                    groupedByCategoryTemp[item.item_category] = [{ ...item, count: 1 }];
+                }
+                else {
+                    const existingItem = groupedByCategoryTemp[item.item_category].find(existing => existing.item_name === item.item_name);
+                    if (existingItem) {
+                        existingItem.count += 1;
+                    } else {
+                        groupedByCategoryTemp[item.item_category].push({ ...item, count: 1 });
+                    }
+                }
+            });
+
+            Object.keys(groupedByCategoryTemp).forEach((category) => {
+                groupedByCategoryTemp[category].forEach((item) =>(
+                    expect(item.count).toBe(1)
+                ));
+            })
         });
     }
 })
