@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import { Item } from '../src/interfaces/Item';
 import { getRandomItems } from '../src/utils/getRandomItems';
 import { ItemWithCount } from '../src/interfaces/ItemWithCount';
-import { k } from 'vitest/dist/reporters-MmQN-57K';
 
 interface Ctx {
     isExactPrice: boolean,
@@ -214,8 +213,8 @@ describe("getRandomItems", () => {
         it(`isExactPrice:'false' & isDuplicatable:'false' & isMaxCal:'false' - Test 3.1`, () => {
             const ctx = {
                 desiredPrice: 5000,
-                isExactPrice: true,
-                isDuplicatable: true,
+                isExactPrice: false,
+                isDuplicatable: false,
                 isMaxCal: false,
                 isRemovedAlco: true,
                 isRemovedNigiri: false,
@@ -252,8 +251,8 @@ describe("getRandomItems", () => {
         it(`isExactPrice:'false' & isDuplicatable:'false' & isMaxCal:'false' - Test 3.2`, () => {
             const ctx = {
                 desiredPrice: 10000,
-                isExactPrice: true,
-                isDuplicatable: true,
+                isExactPrice: false,
+                isDuplicatable: false,
                 isMaxCal: false,
                 isRemovedAlco: true,
                 isRemovedNigiri: false,
